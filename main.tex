@@ -1,0 +1,237 @@
+\documentclass[12pt,letterpaper]{report}
+\usepackage{natbib}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsbsy}
+\usepackage{dcolumn,array}
+\usepackage{tocloft}
+\usepackage{asudis}
+
+%\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}\doublespacing
+\usepackage{xcolor}
+\usepackage{adjustbox}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+%\usepackage[parentice,numbers]{natbib}
+%\usepackage{natbib}
+%\setcitestyle{authoryear,open={(},close={)}}
+\bibliographystyle{unsrtnat}
+\usepackage{titlesec}
+
+\usepackage{comment}
+%\titleformat{\section}{\normalfont\normalsize}{\thesection}{1em}{}
+
+
+%\usepackage{cite}
+\usepackage{mathptmx} 
+%\usepackage[a4paper, left=1.25in,right=1.25in,top=1in,bottom=1in,]{geometry}
+%\geometry{top=1.0in,hmargin=1.25in,height=9.0in,includefoot,letterpaper}
+
+%\usepackage{asudis}
+
+\usepackage{import}
+%\usepackage{example}
+\usepackage{makeidx}
+\makeindex
+\usepackage{csvsimple} 
+\usepackage{xltabular}
+\renewcommand{\arraystretch}{0.5} %line space between rows
+\usepackage{pdfpages}
+\setboolean{@twoside}{false}
+\usepackage{longtable}
+\usepackage{indentfirst}
+
+%adam's package
+\usepackage[authordate,backend=biber,doi=only,isbn=false,noibid=true,
+          refsegment=chapter,date=year,dashed=false,sortcites=true]{biblatex-chicago}
+ 
+\AtEveryBibitem{
+    \clearfield{urlyear}
+    \clearfield{urlmonth}
+}
+\usepackage{dcolumn,array}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{tabularx,booktabs,ragged2e}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+%\newcommand\mc[1]{\multicolumn{1}{@{}C@{}}{#1}}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage[overload]{textcase}
+
+
+
+
+%----------------------------
+\addglobalbib{background.tex}
+\addglobalbib{cha1/ref1.bib}
+\addglobalbib{cha2/ref2.bib}
+\addglobalbib{cha3/ref3.bib}
+\addglobalbib{cha4/ref4.bib}
+\addglobalbib{ref.bib}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9100}
+%\appto{\bibsetup}{\sloppy}
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\newcommand{\titlecaption}[2]{\caption[#1]{\textbf{#1 \textbar\,} #2}}
+\newcommand{\protectedref}[1]{\ref{#1}}
+
+
+%----------------------------
+\fancypagestyle{styletoc}{
+  \fancyhf{}
+  \fancyhead[RE,LO]{CHAPTER}
+  \fancyhead[LE,RO]{Page}
+  \fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{stylefig}{
+  \fancyhf{}
+  \fancyhead[RE,LO]{Figure}
+  \fancyhead[LE,RO]{Page}
+  \fancyfoot[C]{\thepage}
+% \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{regularstyle}
+{
+\fancyhf{}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0pt}
+\fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%-----------------------front matter
+\pagenumbering{roman}
+\title{ Profiling of Indel Phases in Coding Regions}
+\author{Ziqi Zhu}
+\degreeName{Doctor of Philosophy}
+\defensemonth{October}
+\gradmonth{December}
+\gradyear{2022}
+\chair{Reed Cartwright, Chair \\  Jay Taylor\\ Jeremy Wideman\\ Marco Mangone}		
+\maketitle
+\doublespace
+\include{abstract}
+\dedicationpage{\\For my family and friends, who taught me to be curious, positive, and persistent. Remember fellows, work hard and be kind, then amazing things will happen.}
+%\acknowledgementpage{ }
+\begin{acknowledgements}
+\input{ack}
+\end{acknowledgements}
+
+\sloppy
+\date{}
+%\addtokomafont{disposition}{\normalfont}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Abstract
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Dedication
+%\begin{center}
+%  \normalsize DEDICATION \\
+%   \vspace*{10cm} 
+%   \large \emph{For my family and friends, who taught me to be curious, positive, and persistent. Remember %fellows, work hard and be kind, then amazing things will happen.}
+%\end{center}
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Acknowledgement
+%\begin{center}
+%    \normalsize ACKNOWLEDGEMENTS 
+%\end{center}
+%    Thanks to my advisor, whose input provided me the space and support I needed to work and grow. Thanks to my committee, whose input improved this dissertation and the work described herein. Thanks to the members of my lab past and present, who created a genuine and intellectually-stimulating environment to work in and provided helpful feedback. Thanks to the Arizona State University School of Life Sciences and College of Liberal Arts and Sciences for the TA support within last five years. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Table of Contents
+\newpage
+
+\pagestyle{styletoc}
+\tableofcontents
+\addtocontents{toc}{~\hfill Page\par}
+
+\pagestyle{regularstyle}
+
+
+\newpage 
+
+
+\addcontentsline{toc}{part}{\normalsize LIST OF TABLES}
+\listoftables
+\addtocontents{lot}{Table~\hfill Page \par}
+\newpage
+\addcontentsline{toc}{part}{\normalsize LIST OF FIGURES}
+\addtocontents{toc}{CHAPTER \par}
+
+
+\pagestyle{stylefig}
+\listoffigures
+\addtocontents{lof}{Figure~\hfill Page\par}
+
+
+%\pagestyle{regularstyle}
+%\makeatletter
+%\addtocontents{lof}{\protect\afterpage{\protect\hbox to \linewidth%
+%                    {Figure~\hfill Page}\par%
+%                    \protect\addvspace{10\p@}}}
+%\makeatother
+\newpage
+
+
+
+\pagestyle{regularstyle}
+%-----------------------body
+\pagenumbering{arabic}
+%\backmatter
+\import{.}{background.tex}
+%\include{background.tex}
+%\doublespace
+%\mainmatter
+\import{cha1}{cha1.tex}
+\import{cha2}{cha2.tex}
+\import{cha3}{cha3.tex}
+\import{cha4}{cha4.tex}
+\import{.}{conclusion.tex}
+
+\newpage
+\defbibheading{bibliography}[References]{%
+	\begin{center}\uppercase\expandafter{#1}\vspace{1em}\end{center}
+}
+{\singlespace
+\addcontentsline{toc}{part}{\normalsize REFERENCES}
+\printbibliography{}
+}
+
+
+
+%\doublespace
+\renewcommand{\chaptername}{APPENDIX}
+\addtocontents{toc}{APPENDIX \par}
+\appendix
+%\import{.}{supp.tex}
+%\import{.}{scripts.tex}
+
+%---------------------------
+
+
+
+
+
+
+
+\end{document}
