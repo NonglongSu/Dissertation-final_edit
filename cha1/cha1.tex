@@ -1,16 +1,6 @@
 \chapter{\normalfont APPLICATION OF AN EM ALGORITHM IN SIMULATING MG94+GTR SUBSTITUTION MODEL}
 \label{ch:phyloEM}
 
-
-
-
-
-\section{Abstract}
-Point substitutions are the most common mutations in the genome. Here I present an expectation-maximization algorithm for maximum-likelihood training of substitution models (MG94+GTR), where the structural context of a residue is treated as a hidden variable in evolving DNA sequences. From 100 simulated sequence alignments, I estimate the relative nucleotide exchangeabilities, selective pressure on non-synonymous codon substitutions, and branch length between species. My simulation results demonstrate an excellent performance of the Phylo-EM training of the MG94+GTR model. Then I apply the Phylo-EM algorithm on 90 pairwise species from a published dataset and obtain their parameter estimates of 90 species pairs. I found a transitional bias within coding regions and a negative correlation between a non-synonymous selective coefficient ($\omega$) and branch length ($\tau$), which can be discussed from several perspectives.   
-
-\noindent\textbf{Keywords:} substitution, estimation, expectation-maximization. 
-
-
 \section{Introduction}
 Various substitution models have been commonly used for DNA, RNA, and protein sequence analysis, and are particularly effective in detecting the signals of natural selection acting on proteins. An early application of such models include dating divergence time between species in either genes or proteins, and inferring their phylogenetic trees in the molecular biology area \parencite{felsenstein1981evolutionary}. The most commonly used substitution models are continuous-time, finite-state Markov models \parencite{karlin2014first}. The Markov models means that at any given time, the next state is only dependent on the current state and is independent of anything in the past. So their instantaneous rate matrix $R_{ij}$ can be parameterized in various mathematical forms based on different biological assumptions, regardless of the unseen substitution history. Two kinds of Markov models have been used to describe the codon-level sequence evolution process \parencite{kosiol2007empirical}. Empirical models emphasize on outlining the substitution patterns observed dependent on huge quantities of data, rather than specifying the biological parameters including transition-transversion ratio, codon frequency bias, and selective pressures \parencite{lio1998models}. However, mechanistic models include those parameters that can regulate sequence evolution, allowing the testing of hypotheses related to those parameters for a diversity of data sets.  
 
